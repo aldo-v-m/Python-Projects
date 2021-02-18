@@ -1,0 +1,79 @@
+#–––––––––––––––––––––––– Exercise 1 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+PURCHASE_MAX_AMOUNT = 50
+MAX_AMOUNT_RECEIVED = 55
+
+_20_euro = 0
+_10_euro = 0
+_5_euro = 0
+_2_euro = 0
+_1_euro = 0
+_50_cent = 0
+_20_cent = 0
+_10_cent = 0
+
+def get_purchase_sum():
+	purchase_sum = 0
+	while purchase_sum == 0 or purchase_sum >= PURCHASE_MAX_AMOUNT:
+		purchase_sum = float(input('Give the sum of the purchase in Euros: $'))
+		if purchase_sum >= PURCHASE_MAX_AMOUNT:
+			print(f'Try again, ${purchase_sum} is higher than the limit of ${PURCHASE_MAX_AMOUNT}')
+	return purchase_sum
+
+def get_money(purchase_sum):
+	money_received = 0
+	while money_received == 0 or money_received >= MAX_AMOUNT_RECEIVED or money_received < purchase_sum:
+		money_received = float(input('How much money did the customer give you? $'))
+		if money_received >= MAX_AMOUNT_RECEIVED:
+			print(f'Try again, ${money_received} is higher than the limit of ${MAX_AMOUNT_RECEIVED}')
+		if money_received < purchase_sum:
+			print(f'Error: You are missing money, try again')
+	return money_received
+
+
+customer_sum = get_purchase_sum()
+customer_money = get_money(customer_sum)
+
+total_change = customer_money - customer_sum
+print (f'Total change is equal to: ${total_change:.2f}')
+
+while total_change >= 20:
+	total_change = total_change - 20
+	_20_euro += 1
+
+while total_change >= 10: 
+	total_change = total_change - 10
+	_10_euro += 1
+
+while total_change >= 5:
+	total_change = total_change - 5
+	_5_euro += 1
+
+while total_change >= 2:
+	total_change = total_change - 2
+	_2_euro += 1
+
+while total_change >= 1:
+	total_change = total_change - 1
+	_1_euro += 1
+
+while total_change >= 0.50:
+	total_change = total_change - 0.50
+	_50_cent += 1
+
+while total_change >= 0.20:
+	total_change = total_change - 0.20
+	_20_cent += 1
+
+while total_change > 0:
+	total_change = total_change - 0.10
+	_10_cent += 1
+    
+print ("Give back")
+print(f"\t {_20_euro} pcs of 20 euro bank notes")
+print(f"\t {_10_euro} pcs of 10 euro bank notes")
+print(f"\t {_5_euro} pcs of 5 euro bank notes")
+print(f"\t {_2_euro} pcs of 2 euro coins")
+print(f"\t {_1_euro} pcs of 1 euro coins")
+print(f"\t {_50_cent} pcs of 50 cent coins")
+print(f"\t {_20_cent} pcs of 20 cent coins")
+print(f"\t {_10_cent} pcs of 10 cent coins")
